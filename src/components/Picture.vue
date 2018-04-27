@@ -12,9 +12,13 @@ export default {
 
 <style>
 img {
-  height: 100%;
+  max-width: 100vw;
+  /* height: 100%; */
+  /* height: auto;
+  width: auto; */
   margin-left: auto;
   margin-right: auto;
   display: block;
+  /* position: absolute; */
 }
 </style>

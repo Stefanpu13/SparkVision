@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="d-flex flex-column-reverse align-items-stretch">
+  <div id="app" class="d-flex flex-column-reverse ">
     <sv-menu
       class=""
       v-bind:intialMenu="intialMenu"
@@ -7,9 +7,8 @@
       v-on:toggle-image="onToggleImage"
       v-bind:getMenuItems="getMenuItems"/>
 
-    <div class="pic-container d-flex flex-column">
+    <div class="pic-container d-flex flex-column justify-content-center">
       <sv-picture
-        class="align-self-center"
         v-bind:displayedImageUrl="displayedImageUrl"
         v-if="shouldDisplayImage"/>
     </div>
@@ -90,5 +89,6 @@ export default {
 
 .pic-container {
   height: 100%;
+  // position: relative;
 }
 </style>
