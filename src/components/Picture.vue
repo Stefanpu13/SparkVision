@@ -1,15 +1,13 @@
 <template>
-<!-- <div class="test"> -->
   <img class=""
     v-bind:src="displayedImageUrl" />
-<!-- </div> -->
 </template>
 
 <script>
-  export default {
-    props: ['displayedImageUrl'],
-    name: 'sv-picture'
-  }
+export default {
+  props: ["displayedImageUrl"],
+  name: "sv-picture"
+};
 </script>
 
 <style>
@@ -19,9 +17,4 @@ img {
   margin-right: auto;
   display: block;
 }
-
-/* .test {
-  width: 100%;
-  height: 100%;
-} */
 </style>

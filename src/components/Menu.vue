@@ -15,42 +15,32 @@
 </template>
 
 <script>
-  export default {
-    name: 'sv-menu',
-    props: ['getMenuItems', 'intialMenu'],
-    data:function(){
-      return {
-        menusToDisplay: this.intialMenu
-      }
-    },
-    methods: {
-    updateMenu: function(currentMenu){
+export default {
+  name: "sv-menu",
+  props: ["getMenuItems", "intialMenu"],
+  data: function() {
+    return {
+      menusToDisplay: this.intialMenu
+    };
+  },
+  methods: {
+    updateMenu: function(currentMenu) {
       this.menusToDisplay = [];
 
       let curMen = currentMenu;
       do {
         this.menusToDisplay.push(curMen);
         curMen = curMen.parentMenu;
-      }  while(curMen)
+      } while (curMen);
     },
-      onShowSubmenu: function(subMenu) {
-        if(this.getMenuItems(subMenu).length > 0) {
-          this.updateMenu(subMenu);
-          this.$emit('toggle-image', '');
-        } else {
-          this.$emit('toggle-image', subMenu._image);
-        }
+    onShowSubmenu: function(subMenu) {
+      if (this.getMenuItems(subMenu).length > 0) {
+        this.updateMenu(subMenu);
+        this.$emit("toggle-image", "");
+      } else {
+        this.$emit("toggle-image", subMenu._image);
       }
     }
   }
-
+};
 </script>
-
-<style>
-  /* .menu{
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-  } */
-</style>
-
