@@ -17,10 +17,10 @@
 <script>
   export default {
     name: 'sv-menu',
-    props: ['getMenuItems', 'menus'],
+    props: ['getMenuItems', 'intialMenu'],
     data:function(){
       return {
-        menusToDisplay: this.menus
+        menusToDisplay: this.intialMenu
       }
     },
     methods: {
@@ -36,8 +36,9 @@
       onShowSubmenu: function(subMenu) {
         if(this.getMenuItems(subMenu).length > 0) {
           this.updateMenu(subMenu);
+          this.$emit('toggle-image', '');
         } else {
-          this.$emit('show-image', subMenu._image);
+          this.$emit('toggle-image', subMenu._image);
         }
       }
     }

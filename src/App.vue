@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <sv-picture />
+    <sv-picture v-bind:displayedImageUrl="displayedImageUrl" v-if="shouldDisplayImage"/>
     <sv-menu class="botttom-menu"
-      v-bind:menus="menusToDisplay"
+      v-bind:intialMenu="intialMenu"
       v-if="menuLoaded"
-      v-on:show-image="onShowImage"
+      v-on:toggle-image="onToggleImage"
       v-bind:getMenuItems="getMenuItems"/>
   </div>
 </template>
@@ -19,7 +19,9 @@ export default {
   name: 'App',
   data: function(){
     return {
-      menuLoaded: false
+      menuLoaded: false,
+      displayedImageUrl:'',
+      shouldDisplayImage: false
     }
   },
   components: {
@@ -30,8 +32,13 @@ export default {
     getMenuItems: function(currentMenu){
       return (currentMenu && (currentMenu.menu || currentMenu.product)) || [];
     },
-    onShowImage: function(str){
-      console.log(str);
+    onToggleImage: function(imagePath) {
+      if(imagePath.length > 0 ){
+        this.shouldDisplayImage = true;
+        this.displayedImageUrl = `${AZURE_FILE_STORAGE.BASE_URL}/${imagePath}${AZURE_FILE_STORAGE.SAS}`
+      } else {
+        this.shouldDisplayImage = false;
+      }
     },
     initMenu: function (menu) {
       const initMenu = (newMenu, parentMenu) => {
@@ -57,7 +64,7 @@ export default {
         const menusJson = parser.xml2js(t);
 
         const rootMenu = this.initMenu(menusJson.menus);
-        this.menusToDisplay = [rootMenu];
+        this.intialMenu = [rootMenu];
 
         this.menuLoaded = true;
     });
