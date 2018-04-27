@@ -1,11 +1,18 @@
 <template>
-  <div id="app">
-    <sv-picture v-bind:displayedImageUrl="displayedImageUrl" v-if="shouldDisplayImage"/>
-    <sv-menu class="botttom-menu"
+  <div id="app" class="d-flex flex-column-reverse align-items-stretch">
+    <sv-menu
+      class=""
       v-bind:intialMenu="intialMenu"
       v-if="menuLoaded"
       v-on:toggle-image="onToggleImage"
       v-bind:getMenuItems="getMenuItems"/>
+
+    <div class="pic-container d-flex flex-column">
+      <sv-picture
+        class="align-self-center"
+        v-bind:displayedImageUrl="displayedImageUrl"
+        v-if="shouldDisplayImage"/>
+    </div>
   </div>
 </template>
 
@@ -76,8 +83,10 @@ export default {
   @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
   #app{
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+      height: 100vh;
+  }
+
+  .pic-container{
+    height: 100%;
   }
 </style>
