@@ -1,6 +1,5 @@
 <template>
-  <img class=""
-    v-bind:src="displayedImageUrl" />
+  <img v-bind:src="displayedImageUrl" />
 </template>
 
 <script>
@@ -12,13 +11,15 @@ export default {
 
 <style>
 img {
-  max-width: 100vw;
-  /* height: 100%; */
-  /* height: auto;
-  width: auto; */
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  /* position: absolute; */
+  /* Give 'auto' to 'height' and 'width', since images might be portait or landscape*/
+  height: auto;
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
