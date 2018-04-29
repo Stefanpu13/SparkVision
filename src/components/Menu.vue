@@ -1,14 +1,14 @@
 <template>
     <div class='menu'>
       <nav class="navbar navbar-light bg-white border border-dark d-flex justify-content-start"
-       v-for="(menuToDisplay, index) in menusToDisplay"
-       v-bind:key="index"
-       >
+       v-for="(menuToDisplay, i) in menusToDisplay"
+       v-bind:key="i">
         <button
-        v-for="(menuItem, index) in getMenuItems(menuToDisplay)"
-        v-bind:key="index"
+        v-for="(menuItem, i) in getMenuItems(menuToDisplay)"
+        v-bind:key="i"
         v-on:click="onShowSubmenu(menuItem)"
-        class="btn btn-link active">
+        class="btn"
+        v-bind:class="buttonClass(menuItem)">
           {{menuItem._text}}
         </button>
       </nav>
@@ -21,26 +21,44 @@ export default {
   props: ["getMenuItems", "intialMenu"],
   data: function() {
     return {
-      menusToDisplay: this.intialMenu
+      menusToDisplay: this.intialMenu,
+      selectedMenuItems: []
     };
   },
   methods: {
-    updateMenu: function(currentMenu) {
+    updateDisplayedMenus: function(menuItem) {
       this.menusToDisplay = [];
 
+      let currentMenu =  menuItem;
+      do {
+        this.menusToDisplay.push(currentMenu);
+        currentMenu = currentMenu.parentMenu;
+      } while (currentMenu);
+    },
+    updateToggledButtons: function(currentMenu) {
+      this.selectedMenuItems = [];
       let curMen = currentMenu;
       do {
-        this.menusToDisplay.push(curMen);
+        this.selectedMenuItems.push(curMen._text);
         curMen = curMen.parentMenu;
-      } while (curMen);
+      } while (curMen && curMen._text !== undefined);
     },
-    onShowSubmenu: function(subMenu) {
-      if (this.getMenuItems(subMenu).length > 0) {
-        this.updateMenu(subMenu);
+
+    buttonClass: function(menuItem) {
+      return this.selectedMenuItems.includes(menuItem._text)
+        ? "btn-primary"
+        : "btn-link";
+    },
+    onShowSubmenu: function(menuItem) {
+      if (this.getMenuItems(menuItem).length > 0) {
+        this.updateDisplayedMenus(menuItem);
         this.$emit("toggle-image", "");
       } else {
-        this.$emit("toggle-image", subMenu._image);
+        this.$emit("toggle-image", menuItem._image);
       }
+
+      this.selectedMenuItems = this._text;
+      this.updateToggledButtons(menuItem);
     }
   }
 };
