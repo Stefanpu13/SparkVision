@@ -4,10 +4,11 @@
        v-for="(menuToDisplay, index) in menusToDisplay"
        v-bind:key="index"
        >
-        <button v-for="(menuItem, index) in getMenuItems(menuToDisplay)"
-          v-bind:key="index"
-          v-on:click="onShowSubmenu(menuItem)"
-          class="btn btn-link active">
+        <button
+        v-for="(menuItem, index) in getMenuItems(menuToDisplay)"
+        v-bind:key="index"
+        v-on:click="onShowSubmenu(menuItem)"
+        class="btn btn-link active">
           {{menuItem._text}}
         </button>
       </nav>
