@@ -1,17 +1,17 @@
 <template>
-  <div id="app" class="d-flex flex-column-reverse ">
-    <sv-menu
+  <div id="app" class="d-flex flex-column-reverse">
+      <sv-menu
       class=""
       v-bind:intialMenu="intialMenu"
       v-if="menuLoaded"
       v-on:toggle-image="onToggleImage"
-      v-bind:getMenuItems="getMenuItems"/>
+      v-bind:getMenuItems="getMenuItems" />
 
-    <div class="pic-container d-flex flex-column justify-content-center">
-      <sv-picture
+      <div class="pic-container">
+        <sv-picture
         v-bind:displayedImageUrl="displayedImageUrl"
-        v-if="shouldDisplayImage"/>
-    </div>
+        v-if="shouldDisplayImage" />
+      </div>
   </div>
 </template>
 
@@ -41,9 +41,7 @@ export default {
     onToggleImage: function(imagePath) {
       if (imagePath.length > 0) {
         this.shouldDisplayImage = true;
-        this.displayedImageUrl = `${AZURE_FILE_STORAGE.BASE_URL}/${imagePath}${
-          AZURE_FILE_STORAGE.SAS
-        }`;
+        this.displayedImageUrl = require(`./assets/${imagePath}`)
       } else {
         this.shouldDisplayImage = false;
       }
@@ -83,12 +81,23 @@ export default {
 <style lang="scss">
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 #app {
-  height: 100vh;
+  position: relative;
+  height: 100%;
+  // Hide scroll bars in Edge
+  overflow: hidden;
 }
 
 .pic-container {
   height: 100%;
-  // position: relative;
+  position: relative;
 }
 </style>
