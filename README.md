@@ -48,27 +48,17 @@ Using flex allowed for both responsiveness and positioning.
 
 Rebuilding list of displayed menus is simple and avoids direct dom manipulations.
 
-### Deploying the app
+### 9. Deploying the app
 
-Trough Vue-cli the app is built
+Trough Vue-cli the app is built (as easy as `npm run build`).
+The content of 'dist' directory is then manually copied over ftp to Azure.
 
 ----
 
+## A few Problems...
 
-## Build Setup
+1. The app is a bit over-engineered - for exmaple, there is no actual need to load files trhough Azure, bootstrap can ve replaced by a little custom css
+2. If its going to be an app, a linter will be usefull during develoment process.
+3. The xml parser library was not carefully researched, looking at github it does not seem popular.
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+----
