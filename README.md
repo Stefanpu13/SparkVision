@@ -29,13 +29,15 @@ I followed Vue reccomendation on [single-file components](https://vuejs.org/v2/g
 ### 5. Loading Parsing an xml file
 I used [x2js](https://badge.fury.io/js/x2js) as it was simple and did the work
 
-For sake of show off and experiment I load the file from Azure File Storage.
-Provide file through [SAS](https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1) as allows for limited access to assets.
+For sake of show off and experiment I load the file from Azure File Storage and
+provide it through [SAS](https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1) as it allows for limited access to assets.
 As usual, boastings do not go that well, so If you do not see the menu on page load - reload the page.
+
+Edit: used Azure blob storage and things should be working fine.
 ### 6. Loading the pictures
 
-Ideally the pics would be served on demand(so the user does not need to download all at beginning)
-However, I encountered problems with Azure Storage and decided to add them as static content, and have a working demo.
+Ideally the images would be served on demand(so the user does not need to download all at initial page load)
+However, I encountered problems with Azure File Storage and decided to add them as static content, and have a working demo.
 
 ### 7. Centering the pictures
 
@@ -57,8 +59,8 @@ The content of 'dist' directory is then manually copied over ftp to Azure.
 
 ## A few Problems...
 
-1. The app is a bit over-engineered - for exmaple, there is no actual need to load files trhough Azure, bootstrap can ve replaced by a little custom css
-2. If its going to be an app, a linter will be usefull during develoment process.
+1. The app is a bit over-engineered - for exmaple, there is no actual need to load files trhough Azure, bootstrap can be replaced by a little custom css
+2. If it is going to be an app, a linter will be usefull during develoment process.
 3. The xml parser library was not carefully researched, looking at github it does not seem popular.
 4. There is a warning on the github page for 'potential security vulnerability'.
 
