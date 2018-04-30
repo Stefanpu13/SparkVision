@@ -9,7 +9,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 img {
   /* Give 'auto' to 'height' and 'width', since images might be portait or landscape*/
   height: auto;
