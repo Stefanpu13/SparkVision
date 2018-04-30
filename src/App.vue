@@ -36,28 +36,28 @@ export default {
   },
   methods: {
     getMenuItems: function(currentMenu) {
-      return (currentMenu && (currentMenu.menu || currentMenu.product)) || [];
+      return currentMenu.menu || currentMenu.product || [];
     },
     onToggleImage: function(imagePath) {
       if (imagePath.length > 0) {
         this.shouldDisplayImage = true;
-        this.displayedImageUrl = require(`./assets/${imagePath}`)
+        this.displayedImageUrl = require(`./assets/${imagePath}`);
       } else {
         this.shouldDisplayImage = false;
       }
     },
-    initMenu: function(menu) {
-      const initMenu = (newMenu, parentMenu) => {
-        newMenu.parentMenu = parentMenu;
+    linkToParentMenu: function(menu) {
+      const linkToParentMenu = (currentMenu, parentMenu) => {
+        currentMenu.parentMenu = parentMenu;
 
-        const menuItems = this.getMenuItems(newMenu);
+        const menuItems = this.getMenuItems(currentMenu);
 
         menuItems.forEach(menuItem => {
-          initMenu(menuItem, newMenu);
+          linkToParentMenu(menuItem, currentMenu);
         });
       };
 
-      initMenu(menu);
+      linkToParentMenu(menu);
 
       return menu;
     }
@@ -69,7 +69,7 @@ export default {
         const parser = new X2JS();
         const menusJson = parser.xml2js(t);
 
-        const rootMenu = this.initMenu(menusJson.menus);
+        const rootMenu = this.linkToParentMenu(menusJson.menus);
         this.intialMenu = [rootMenu];
 
         this.menuLoaded = true;

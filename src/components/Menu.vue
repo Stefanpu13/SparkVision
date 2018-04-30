@@ -8,7 +8,7 @@
         v-bind:key="i"
         v-on:click="onShowSubmenu(menuItem)"
         class="btn"
-        v-bind:class="buttonClass(menuItem)">
+        v-bind:class="getIsClickedButtonClass(menuItem)">
           {{menuItem._text}}
         </button>
       </nav>
@@ -35,16 +35,15 @@ export default {
         currentMenu = currentMenu.parentMenu;
       } while (currentMenu);
     },
-    updateToggledButtons: function(currentMenu) {
+    updateToggledButtons: function(menuItem) {
       this.selectedMenuItems = [];
-      let curMen = currentMenu;
+      let currentMenuItem = menuItem;
       do {
-        this.selectedMenuItems.push(curMen._text);
-        curMen = curMen.parentMenu;
-      } while (curMen && curMen._text !== undefined);
+        this.selectedMenuItems.push(currentMenuItem._text);
+        currentMenuItem = currentMenuItem.parentMenu;
+      } while (currentMenuItem !== undefined && currentMenuItem._text !== undefined);
     },
-
-    buttonClass: function(menuItem) {
+    getIsClickedButtonClass: function(menuItem) {
       return this.selectedMenuItems.includes(menuItem._text)
         ? "btn-primary"
         : "btn-link";
