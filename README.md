@@ -60,5 +60,6 @@ The content of 'dist' directory is then manually copied over ftp to Azure.
 1. The app is a bit over-engineered - for exmaple, there is no actual need to load files trhough Azure, bootstrap can ve replaced by a little custom css
 2. If its going to be an app, a linter will be usefull during develoment process.
 3. The xml parser library was not carefully researched, looking at github it does not seem popular.
+4. There is a warning on the github page for 'potential security vulnerability'.
 
 ----
