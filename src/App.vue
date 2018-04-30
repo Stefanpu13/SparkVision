@@ -41,6 +41,7 @@ export default {
     onToggleImage: function(imagePath) {
       if (imagePath.length > 0) {
         this.shouldDisplayImage = true;
+        // see: https://github.com/vuejs/vue-loader/issues/896
         this.displayedImageUrl = require(`./assets/${imagePath}`);
       } else {
         this.shouldDisplayImage = false;
