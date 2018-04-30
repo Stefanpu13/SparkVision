@@ -26,6 +26,9 @@ export default {
     };
   },
   methods: {
+    /*
+      Rebuild the list of displayed menu and its parent menus.
+     */
     updateDisplayedMenus: function(menuItem) {
       this.menusToDisplay = [];
 
@@ -35,6 +38,9 @@ export default {
         currentMenu = currentMenu.parentMenu;
       } while (currentMenu);
     },
+    /*
+      Rebuild the list of clicked button and cicked buttons in parent menus.
+    */
     updateToggledButtons: function(menuItem) {
       this.selectedMenuItems = [];
       let currentMenuItem = menuItem;

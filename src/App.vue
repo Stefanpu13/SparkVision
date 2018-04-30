@@ -46,6 +46,11 @@ export default {
         this.shouldDisplayImage = false;
       }
     },
+    /*
+      Displayed submenu means that its parent menu is also displayed.
+      Adding links to parent menus allows to build a list of submenu
+      and its parents and display them.
+    */
     linkToParentMenu: function(menu) {
       const linkToParentMenu = (currentMenu, parentMenu) => {
         currentMenu.parentMenu = parentMenu;
@@ -92,7 +97,7 @@ body {
 #app {
   position: relative;
   height: 100%;
-  // Hide scroll bars in Edge
+  // Hide scroll bars in Edge.
   overflow: hidden;
 }
 
