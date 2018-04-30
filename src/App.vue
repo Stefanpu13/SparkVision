@@ -69,7 +69,11 @@ export default {
     }
   },
   created: function() {
-    fetch(PRODUCTS_XML_URL)
+    fetch(PRODUCTS_XML_URL, {
+      headers: {
+        "content-type": "text/xml"
+      }
+    })
       .then(r => r.text())
       .then(t => {
         const parser = new X2JS();
