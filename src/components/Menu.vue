@@ -7,7 +7,7 @@
         v-for="(menuItem, i) in getMenuItems(menuToDisplay)"
         v-bind:key="i"
         v-on:click="onShowSubmenu(menuItem)"
-        class="btn"
+        class="btn sv-btn"
         v-bind:class="getIsClickedButtonClass(menuItem)">
           {{menuItem._text}}
         </button>
@@ -32,7 +32,7 @@ export default {
     updateDisplayedMenus: function(menuItem) {
       this.menusToDisplay = [];
 
-      let currentMenu =  menuItem;
+      let currentMenu = menuItem;
       do {
         this.menusToDisplay.push(currentMenu);
         currentMenu = currentMenu.parentMenu;
@@ -47,7 +47,10 @@ export default {
       do {
         this.selectedMenuItems.push(currentMenuItem._text);
         currentMenuItem = currentMenuItem.parentMenu;
-      } while (currentMenuItem !== undefined && currentMenuItem._text !== undefined);
+      } while (
+        currentMenuItem !== undefined &&
+        currentMenuItem._text !== undefined
+      );
     },
     getIsClickedButtonClass: function(menuItem) {
       return this.selectedMenuItems.includes(menuItem._text)
@@ -68,3 +71,17 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.sv-btn {
+  font-weight: bold;
+}
+.sv-btn.btn-link {
+  color: black;
+}
+.sv-btn.btn-primary {
+  background-color: #205692;
+  border-color: #205692;
+  border-radius: 10px;
+}
+</style>

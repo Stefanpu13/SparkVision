@@ -109,5 +109,13 @@ body {
 .pic-container {
   height: 100%;
   position: relative;
+
+  background-color: #F2F0EE
+}
+
+.sv-btn.btn-primary{
+  background-color: #205692;;
+  border-color: #205692;
+  border-radius: 5px;
 }
 </style>
